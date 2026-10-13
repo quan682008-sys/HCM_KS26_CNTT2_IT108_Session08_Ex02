@@ -1,0 +1,12 @@
+﻿1. Phân tích
+An đã nhầm giữa việc tìm tên tệp và tìm nội dung bên trong tệp. Lệnh Get-ChildItem -Recurse -Filter "*404*" chỉ tìm các tệp hoặc thư mục có tên chứa 404, chứ không tìm từ khóa 404 bên trong access.log.
+Phân biệt hai lệnh
+* Get-ChildItem: Dùng để liệt kê hoặc tìm tệp và thư mục theo tên, đường dẫn, phần mở rộng.
+* Select-String: Dùng để tìm kiếm từ khóa hoặc mẫu ký tự bên trong nội dung tệp, đồng thời hiển thị số dòng chứa kết quả.
+2. Hoàn thiện câu lệnh
+Tìm các dòng chứa từ khóa error trong tệp access.log:
+Select-String -Path ".\access.log" -Pattern "error"
+Lệnh này không phân biệt chữ hoa và chữ thường, đồng thời tự động hiển thị số thứ tự dòng để dễ tra cứu.
+Nếu muốn tìm cả 404 và ERROR:
+Select-String -Path ".\access.log" -Pattern "404|ERROR"
+Lệnh trên tìm các dòng chứa 404 hoặc ERROR.
